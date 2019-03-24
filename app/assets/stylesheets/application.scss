@@ -1,0 +1,274 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+@import 'bootstrap';
+@import "font-awesome";
+
+
+.saboxplugin-socials .fa {
+    font-family: FontAwesome;
+}
+
+:root {
+  --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.nav-buffer {
+  height: 100px;
+}
+
+.item-image-jumbotron {
+  height: 400px;
+}
+
+.profile-picture {
+  height: 200;
+  width: 200px;
+}
+
+.profile-picture-item {
+  height: 75px;
+  width: 75px;
+}
+
+.profile-user-name {
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.verified-item {
+  width: 50px;
+  font-size: 10px;
+}
+
+.profile-map {
+  width: 450px;
+  height: 200px;
+}
+
+.spacer-20 {
+  height: 20px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+a {
+    color: #17a2b8;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+
+.thead-grey {
+  background-color: #343a40;
+  color: white;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+	background-color: white;
+}
+
+.item-option {
+  width: 125px;
+}
+
+.item-option-container {
+  float: none;
+}
+
+.price-icon {
+  float: left;
+}
+
+.item-price {
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.item-name {
+  font-size: 28px;
+  font-weight: bolder;
+}
+
+.item-image {
+  height: 125%;
+  padding-bottom: 50px;
+}
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 4;
+  }
+}
+
+.item-image-blur {
+  filter: blur(5px);
+  transform: scale(2);
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    width: 15em;
+    height: 30px;
+}
+
+.rating input {
+    position: relative;
+    left: -999999px;
+}
+
+.rating label {
+    display: inline-block;
+    font-size: 0;
+}
+
+.rating > label:before {
+    position: relative;
+    font: 20px/1 FontAwesome;
+    display: block;
+    content: "\f005";
+    color: #ccc;
+    background: -webkit-linear-gradient(-45deg, #d9d9d9 0%, #b3b3b3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > label.selected:before,
+.rating > label.selected ~ label:before {
+    color: #f0ad4e;
+    background: -webkit-linear-gradient(-45deg, #fcb551 0%, #d69a45 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-rating {
+  color: #f0ad4e;
+  font-size: 18px;
+}.ribbon {
+  position: absolute;
+  right: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#17A2B8 0%, #17A2B8 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; right: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #17A2B8;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #17A2B8;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #17A2B8;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #17A2B8;
+}
+
+.item-status-badge {
+  font-size: 16px;
+  float: right;
+}
+
+.post-item-btn {
+  float: right;
+}
+
+.form-group label {
+  font-weight: bolder;
+}
+
+.datepicker {
+	.form-control {
+		background: #fff;
+	}
+}
+
+.rent-checkbox {
+  display: inline;
+  float: left;
+}
+
+.navbar-logo {
+  height: 40px;
+}

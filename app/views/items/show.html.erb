@@ -1,0 +1,53 @@
+<%= stylesheet_link_tag "items", media: "all" %>
+
+<%= render 'home/navbar' %>
+
+
+  <div class="p-3 p-md-5 text-white  bg-info nav-buffer">
+    
+  </div>
+  
+  <div class="p-3 p-md-5 text-white bg-dark item-image-jumbotron">
+    <% if @item.images.count > 0 %>
+        <% if @item.images[0].variable? %>
+          <%= image_tag @item.images[0], class: "item-image mx-auto d-block big-item-image" %>
+        <% elsif @item.images[0].previewable? %>
+          <%= image_tag @item.images[0], class: "item-image mx-auto d-block big-item-image" %>
+        <% end %>
+      <% elsif @item.image_url %>
+        <%= image_tag(@item.image_url, class: "item-image mx-auto d-block big-item-image") %>
+      <% else %>
+        <%= image_tag("items/placeholder.svg", class: "item-image mx-auto d-block big-item-image") %>
+      <% end %>
+  </div>
+  <div class="album py-5 bg-light">
+  <%= render 'item_info', item: @item, tags: @tags %>
+    <hr>
+    <% if @similar_items.count > 0 %>
+    <div class="row mt-3">
+      <span class="item-name ml-3">Similar Items</span></br>
+    </div>
+    
+      <div class="card-group mt-3">
+        <% @similar_items.limit(4).each do |item| %>
+          <%= render 'item_card', item: item %>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <% if @item.user.items.where.not(id: @item.id).count > 0 %>
+    <div class="row mt-3">
+      <span class="item-name ml-3"><%= @item.user.fname %>'s Other Items</span></br>
+    </div>
+    
+    <div class="card-group mt-3">
+      
+      <% @user_other_items.limit(4).each do |item| %>
+        <%= render 'item_card', item: item %>
+      <% end %>
+    </div> 
+    <% end %>
+    <div class="row spacer-20 bg-light"></div>
+  </div>
+</div>
+<%= render 'home/footer' %>

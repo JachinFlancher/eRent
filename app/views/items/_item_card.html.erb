@@ -1,0 +1,62 @@
+
+  <div class="col-md-3">
+    <%= link_to :controller => :items, :action => 'show', :id => item.id do %>
+    <div class="card mb-3 shadow-sm">
+      <% if item.images.count > 0 %>
+        <% if item.images[0].variable? %>
+          <%= image_tag item.images[0], class: "card-img-top item-image-card" %>
+        <% elsif item.images[0].previewable? %>
+          <%= image_tag item.images[0], class: "card-img-top item-image-card" %>
+        <% end %>
+      <% elsif item.image_url %>
+        <%= image_tag(item.image_url, class: "card-img-top") %>
+      <% else %>
+        <%= image_tag("items/placeholder.svg", class: "card-img-top") %>
+      <% end %>
+      <div class="card-body">
+        <h4><%= truncate(item.name, :length => 15) %></h4>
+        <h4 class="text-info"><strong><%= number_to_currency(item.price) %></strong></h4>
+        <span class="card-info text-muted"><%= item.user.city %>, <%= item.user.state %>
+          <% if pending(item) %>
+            <span class="badge badge-info item-status-badge">Pending</span>
+          <% elsif !checked_in(item) %>
+            <span class="badge badge-info item-status-badge">Out</span>
+          <% end %>
+          
+        </span>
+        
+        
+      </div>
+      <% end %>
+      
+      <% if current_user %>
+        <% if !checked_in(item) && !pending(item) %>
+          <% if buyer_rented(item) %>
+            <div class="card-footer">
+              <% if !buyer_checked_in(item) %>
+                <%= button_to rentals_buyer_checkin_confirm_path(:rental_id => current_rental(item)), remote: true, :class => "btn btn-info btn-block", method: :post do %>
+                    Buyer Check-in
+                <% end %>
+              <% else %>
+                <button class="btn btn-info btn-block" disabled>Awaiting Seller Check-in</button>
+              <% end %>
+            </div>
+          <% elsif seller_rented(item) %>
+            
+            <div class="card-footer">
+              <% if !seller_checked_in(item) %>
+                <%= button_to rentals_seller_checkin_confirm_path(:rental_id => current_rental(item)), remote: true, :class => "btn btn-info btn-block", method: :post do %>
+                    Seller Check-in
+                <% end %>
+              <% else %>
+                <button class="btn btn-info btn-block" disabled>Awaiting Buyer Check-in</button>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    
+  </div>
+
+
